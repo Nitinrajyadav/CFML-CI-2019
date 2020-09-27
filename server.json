@@ -1,8 +1,26 @@
 {
-  "openbrowser": "false",
-  "web": {
-    "http": {
-      "port": "8500"
+    "name": "CFML_CI_TEST",
+    "adminPassword": "secret",
+    "openBrowser": false,
+    "startTimeout": 240,
+    "debug": true,
+    "trace": true,
+    "console": true,
+    "trayEnable": true,
+    "web": {
+        "host": "127.0.0.1",
+        "webroot": "./",
+        "directoryBrowsing": true,
+        "accessLogEnable": true,
+        "maxRequests": 300,
+        "gzipEnable": true,
+        "HTTP": {
+            "enable": true,
+            "port": 8500
+        }
+    },
+    "app": {
+        "logDir": "./logs/",
+        "cfengine": "lucee@5"
     }
-  }
 }

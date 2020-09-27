@@ -3,26 +3,27 @@ language: java
 sudo: required
 
 env:
-  matrix:
-    - ENGINE=lucee@5
-    - ENGINE=adobe@11
+    matrix:
+        - ENGINE=lucee@5
+        #- ENGINE=adobe@11
 
 dist: trusty
 
 cache:
-  directories:
-    - $HOME/.CommandBox
+    directories:
+        - $HOME/.CommandBox
 
 before_install:
-  - sudo apt-key adv --keyserver keys.gnupg.net --recv 6DA70622
-  - sudo echo "deb http://downloads.ortussolutions.com/debs/noarch /" | sudo tee -a
-    /etc/apt/sources.list.d/commandbox.list
+    - sudo apt-key adv --keyserver keys.gnupg.net --recv 6DA70622
+    - sudo echo "deb http://downloads.ortussolutions.com/debs/noarch /" | sudo tee -a
+      /etc/apt/sources.list.d/commandbox.list
 
 install:
-  - sudo apt-get update && sudo apt-get --assume-yes install commandbox
+    - sudo apt-get update && sudo apt-get --assume-yes install commandbox
+    - box install
 
 before_script:
-  - box server start cfengine=$ENGINE port=8500 openbrowser=false
+    - box server start cfengine=$ENGINE port=8500 openbrowser=false
 
 script:
-  - box testbox run
+    - box testbox run
